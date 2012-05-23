@@ -1,0 +1,76 @@
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>Grown By Us &mdash; Friends, family, food.</title>
+  <script type='text/javascript' src='http://code.alecperkins.net/coffeetable/coffeetable-min.js'></script>
+  <script type="text/javascript"
+          src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCnvq6RpSHkE6qaOAbvQuKhBnspTVbJsec&sensor=true">
+    </script>
+</head>
+
+<body onload="Template.map.initmap()">
+  {{> header}}
+  {{> map}}
+  {{> items}}
+  {{> stalls}}
+  {{> sample_locations}}
+</body>
+
+<template name="header">
+  <header>
+    <h1>Grown By Us</h1>
+    <h2>Friends, family, food.</h2>
+    {{> menu}}
+  </header>
+</template>
+
+<template name="menu">
+  <ul id="menu">
+    <li><a class="btn" data-toggle="modal" href="#dialog-addItem" >List Item</a></li>
+  </ul>
+  <div class="modal fade" id="dialog-addItem">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>List Item</h3>
+    </div>
+    <div class="modal-body">
+      <p>Coming soon...</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+      <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+  </div>
+</template>
+
+<template name="map">
+  <div id="map_canvas" style="width: 70%; height: 100%;"></div>
+</template>
+
+<template name="items">
+  <div id="items">
+    <ul>
+      {{#each items}}
+        {{> item}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="item">
+  <li>
+    <span class="name">{{name}}</span>
+    <span class="price">{{fmtCurrency price}}</span>
+    <span class="description">{{description}}</span>
+    <span class="quantity">{{quantity}} available</span>
+</template>
+
+<template name="stalls">
+  <div class="stalls">
+  </div>
+</template>
+
+<template name="sample_locations">
+  <button id="northalbany" class="northalbany">N. Albany</button>
+  <button id="moree" class="moree">Moree, NSW</button>
+</template>
+

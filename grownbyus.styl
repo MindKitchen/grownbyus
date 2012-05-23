@@ -1,0 +1,71 @@
+body
+  background #008000
+  height 100%
+
+header
+  background url(img/header-2000.jpg) top right no-repeat
+  color #efefef
+  width 30%
+
+header h1, header h2
+  background rgba(0,0,0,0.2)
+  text-shadow 2px 2px 2px rgba(0,0,0,0.75)
+
+header ul
+  background rgba(0,0,0,0.2)
+  margin-bottom 0
+
+#menu
+  list-style-type none
+  margin-left 0
+
+#map_canvas
+  border 1px solid #004000
+  border-left none
+  border-right none
+  width 70%
+  height 100%
+  position absolute
+  bottom 0px
+  right 0px
+
+#items
+  width 30%
+
+#items ul
+  margin 0 0 0 0
+
+#items ul li
+  background #efefef
+  position relative
+  font-size 15px
+  line-height 20px
+  padding 10px 0px
+  list-style-type none
+
+#items ul li span
+  display block
+
+#items span.name
+  font-size 1.2em
+
+#items span.price
+  position absolute
+  top 10px
+  right 0px
+
+#items span.quantity
+  position absolute
+  top 30px
+  right 0px
+
+@media (max-width: 767px)
+  body
+    padding: 0
+
+  header
+    background url(img/header-1000.jpg) top right no-repeat
+
+@media (max-width: 540px)
+  header
+    background url(img/header-600.jpg) top right no-repeat
