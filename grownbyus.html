@@ -3,16 +3,19 @@
   <title>Grown By Us &mdash; Friends, family, food.</title>
   <script type='text/javascript' src='http://code.alecperkins.net/coffeetable/coffeetable-min.js'></script>
   <script type="text/javascript"
-          src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCnvq6RpSHkE6qaOAbvQuKhBnspTVbJsec&sensor=true">
-    </script>
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCnvq6RpSHkE6qaOAbvQuKhBnspTVbJsec&sensor=true"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+  <script src=""></script>
 </head>
 
-<body onload="Template.map.initmap()">
+<body>
   {{> header}}
   {{> map}}
   {{> items}}
   {{> stalls}}
   {{> sample_locations}}
+  <iframe id="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2FGrownByUs&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21&amp;appId=229223357111117" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+  <a id="betaLink" href="http://beta.grownby.us/">&beta;eta</a>
 </body>
 
 <template name="header">
@@ -59,9 +62,8 @@
 <template name="item">
   <li>
     <span class="name">{{name}}</span>
-    <span class="price">{{fmtCurrency price}}</span>
+    <span class="quantity_price"><span class="quantity">{{quantity}}</span> available @ <span class="price">{{fmtCurrency price}}</span></span>
     <span class="description">{{description}}</span>
-    <span class="quantity">{{quantity}} available</span>
 </template>
 
 <template name="stalls">
@@ -70,7 +72,9 @@
 </template>
 
 <template name="sample_locations">
-  <button id="northalbany" class="northalbany">N. Albany</button>
-  <button id="moree" class="moree">Moree, NSW</button>
+  <ul id="sample_locations">
+    <li><button id="northalbany" class="northalbany">N. Albany</button></li>
+    <li><button id="moree" class="moree">Moree, NSW</button></li>
+  </ul>
 </template>
 

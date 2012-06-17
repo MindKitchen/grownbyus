@@ -3,26 +3,25 @@ body
   height 100%
 
 header
-  background url(img/header-2000.jpg) top right no-repeat
   color #efefef
   width 30%
 
 header h1, header h2
   background rgba(0,0,0,0.2)
+  padding-left 5px
   text-shadow 2px 2px 2px rgba(0,0,0,0.75)
 
 header ul
   background rgba(0,0,0,0.2)
+
   margin-bottom 0
 
 #menu
   list-style-type none
   margin-left 0
+  padding 0px 0px 10px 5px
 
 #map_canvas
-  border 1px solid #004000
-  border-left none
-  border-right none
   width 70%
   height 100%
   position absolute
@@ -33,31 +32,51 @@ header ul
   width 30%
 
 #items ul
-  margin 0 0 0 0
+  margin 0 0 10px 0
+  height 100%
+  overflow auto
 
 #items ul li
   background #efefef
   position relative
   font-size 15px
   line-height 20px
-  padding 10px 0px
+  padding 10px 0px 10px 5px
   list-style-type none
-
-#items ul li span
-  display block
 
 #items span.name
   font-size 1.2em
 
-#items span.price
+#items span.quantity_price
+  color #999
   position absolute
-  top 10px
-  right 0px
+  top 12px
+  right 5px
 
-#items span.quantity
+#items span.price
+  color #333
+  font-weight bold
+
+#items span.description
+  display block
+
+#sample_locations
+  list-style-type none
+  margin 5px 0px 0px 5px
+
+#sample_locations li
+  display inline
+  
+#fbLike
   position absolute
-  top 30px
-  right 0px
+  bottom 5px
+  left 5px
+
+#betaLink
+  color #2f2
+  position absolute
+  bottom 8px
+  left 90px
 
 @media (max-width: 767px)
   body

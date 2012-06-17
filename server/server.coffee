@@ -11,7 +11,7 @@ Meteor.startup ->
       owners: [Users.find({}).fetch()[0]._id
                Users.find({}).fetch()[1]._id]
   if Items.find().count() is 0
-#    Items.insert({name: "Carrots", price: 0.10, description: "Delicious orange goodness! (Price per carrot)", quantity: 10, loc: [44.486693, -122.866751], stalls: [Stalls.findOne()._id]})  
+#    Items.insert({name: "", price: , description: "", quantity: , loc: [44.486693, -122.866751], stalls: [Stalls.findOne()._id]})  
     Items.insert
       name: "Cucumbers"
       price: 1.29
@@ -29,8 +29,10 @@ Meteor.startup ->
 
 Meteor.publish "users", -> Users.find {}
 Meteor.publish "stalls", -> Stalls.find {}
-Meteor.publish "items", (lat, lon) ->
-  if lat? or lon? then Items.find {loc: {$near: [lat, lon], $maxDistance: 1} } else Items.find {}
+Meteor.publish "items", (sw, ne) ->
+  if sw? or ne? then Items.find {loc: {$within: {$box: [sw, ne]} } } else Items.find {}
+#Meteor.publish "items", (lat, lon) ->
+#  if lat? or lon? then Items.find {loc: {$near: [lat, lon], $maxDistance: 1} } else Items.find {}
 ###  if lat? or lon?
     console.log "\nLat: #{lat} Lon: #{lon}"
     items = Items.find {loc: {$near: [lat, lon], $maxDistance: 0.5} }
