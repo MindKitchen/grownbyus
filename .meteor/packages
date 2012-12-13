@@ -6,3 +6,7 @@
 coffeescript
 stylus
 bootstrap
+accounts-ui
+accounts-google
+accounts-facebook
+accounts

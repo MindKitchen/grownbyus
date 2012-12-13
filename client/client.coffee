@@ -14,7 +14,7 @@ Handlebars.registerHelper 'fmtCurrency', (n) ->
 
 Template.menu.events =
   'click button.additem': ->
-    $("#dialog-addItem").dialog "open"
+    $("#dialog-add-item").dialog "open"
     return false
 
 Template.items.items = ->
@@ -25,6 +25,10 @@ Template.sample_locations.events =
     GBU.setLoc [44.659160, -123.141250]
   'click button.moree': ->
     GBU.setLoc [-29.465835, 149.833889]
+
+$('#dialog-add-item').on 'hide', (x) ->
+  console.log x
+  return
 
 $(window).resize ->
   $("#items").height($(document).height()-170)
@@ -40,14 +44,14 @@ $ ->
 
     mapOptions =
       center: new google.maps.LatLng Session.get("cur_lat"), Session.get("cur_lon")
-      zoom: 10 
+      zoom: 14 
       mapTypeId: google.maps.MapTypeId.ROADMAP
 
     GBU.map = new google.maps.Map document.getElementById("map_canvas"), mapOptions
 
     google.maps.event.addListener GBU.map, 'mouseup', ->
       c = GBU.map.getCenter()
-      GBU.setLoc [c.$a, c.ab]
+      GBU.setLoc [c.lat(), c.lng()]
       return
 
     google.maps.event.addListener GBU.map, 'bounds_changed', ->

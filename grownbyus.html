@@ -16,33 +16,25 @@
   {{> sample_locations}}
   <iframe id="fbLike" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2FGrownByUs&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21&amp;appId=229223357111117" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
   <a id="betaLink" href="http://beta.grownby.us/">&beta;eta</a>
+
+  {{> dialogs}}
 </body>
 
 <template name="header">
   <header>
-    <h1>Grown By Us</h1>
-    <h2>Friends, family, food.</h2>
     {{> menu}}
   </header>
 </template>
 
 <template name="menu">
+  {{> loginButtons}}
+
   <ul id="menu">
-    <li><a class="btn" data-toggle="modal" href="#dialog-addItem" >List Item</a></li>
+    {{#if currentUser}}
+    <li><a class="btn" data-toggle="modal" href="#dialog-add-item" >List Item</a></li>
+    {{/if}}
   </ul>
-  <div class="modal fade" id="dialog-addItem">
-    <div class="modal-header">
-      <button class="close" data-dismiss="modal">×</button>
-      <h3>List Item</h3>
-    </div>
-    <div class="modal-body">
-      <p>Coming soon...</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal">Close</a>
-      <a href="#" class="btn btn-primary">Save changes</a>
-    </div>
-  </div>
+
 </template>
 
 <template name="map">
@@ -72,9 +64,50 @@
 </template>
 
 <template name="sample_locations">
-  <ul id="sample_locations">
-    <li><button id="northalbany" class="northalbany">N. Albany</button></li>
-    <li><button id="moree" class="moree">Moree, NSW</button></li>
-  </ul>
+  <div id="sample_locations">
+    <span>Zoom map to:</span>
+    <ul>
+      <li><button id="northalbany" class="northalbany">N. Albany</button></li>
+    </ul>
+  </div>
 </template>
 
+<template name="dialogs">
+  <div class="modal fade" id="dialog-add-item">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>List Item</h3>
+    </div>
+    <div class="modal-body">
+      <form id="list-item" onsubmit="return GBU.handleForm()">
+
+        <fieldset>
+          <legend>Basics</legend>
+          <ol>
+            <li>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Item name" required autofocus>
+            </li>
+            <li>
+              <label for="price">Price</label>
+              <input id="price" name="price" type="text" placeholder="Price in dollars" required>
+            </li>
+            <li>
+              <label for="description">Description</label>
+              <input id="description" name="description" type="textarea" placeholder="A short description of your item">
+            </li>
+            <li>
+              <label for="quantity">Quantity</label>
+              <input id="quantity" name="quantity" type="text" placeholder="How many do you have?">
+            </li>
+          </ol>
+        </fieldset>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+      <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+  </div>
+</template>

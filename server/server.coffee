@@ -1,11 +1,13 @@
 Meteor.startup ->
   if Users.find().count() is 0
     Users.insert
-      username: "jack" 
-      diaplayname:  "Jack the Grower"
+      name:  "Jack the Grower"
+      emails: ["jackthegrower@grownby.us"]
+      services: {}
     Users.insert
-      username: "jill"
-      displayname: "Jill the Grower"
+      name: "Jill the Grower"
+      emails: ["jillthegrower@grownby.us"]
+      services: {}
   if Stalls.find().count() is 0
     Stalls.insert
       owners: [Users.find({}).fetch()[0]._id
@@ -27,10 +29,10 @@ Meteor.startup ->
       loc: [44.659160, -123.141250]
       stalls: [Stalls.findOne()._id]
 
-Meteor.publish "users", -> Users.find {}
+#Meteor.publish "users", -> Users.find {}
 Meteor.publish "stalls", -> Stalls.find {}
 Meteor.publish "items", (sw, ne) ->
-  if sw? or ne? then Items.find {loc: {$within: {$box: [sw, ne]} } } else Items.find {}
+  if (sw? and ne?) and sw != ne then Items.find {loc: {$within: {$box: [sw, ne]} } } else Items.find {}
 #Meteor.publish "items", (lat, lon) ->
 #  if lat? or lon? then Items.find {loc: {$near: [lat, lon], $maxDistance: 1} } else Items.find {}
 ###  if lat? or lon?

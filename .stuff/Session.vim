@@ -16,8 +16,8 @@ onoremap  gggHG
 nnoremap  gggHG
 vnoremap  "+y
 noremap  
-nnoremap  :update
 vnoremap  :update
+nnoremap  :update
 onoremap  :update
 nmap  "+gP
 omap  "+gP
@@ -43,15 +43,15 @@ nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
-nmap <S-Insert> "+gP
-nnoremap <C-Tab> w
-nnoremap <C-F4> c
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 onoremap <C-F4> c
+nnoremap <C-F4> c
 vnoremap <C-F4> c
 onoremap <C-Tab> w
+nnoremap <C-Tab> w
 vnoremap <C-Tab> w
 vmap <S-Insert> 
+nmap <S-Insert> "+gP
 omap <S-Insert> "+gP
 vnoremap <C-Insert> "+y
 vnoremap <S-Del> "+x
@@ -99,7 +99,6 @@ set smarttab
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=ASCII:\ %03.b\ %-16(\ %l,%c-%v\ %)%P
 set tabstop=2
 set whichwrap=b,s,<,>,[,]
-set window=67
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -108,16 +107,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 grownbyus.html
+badd +24 grownbyus.html
 badd +25 grownbyus.styl
-badd +4 grownbyus.coffee
-badd +51 client/client.coffee
-badd +2 accounts/providers.js
-badd +1 accounts/server/provider_secrets.js
-badd +47 server/server.coffee
-badd +20 server/helpers.coffee
-badd +2 accounts/providers.coffee
-badd +0 accounts/server/provider_secrets.coffee
+badd +1 grownbyus.coffee
+badd +0 client/client.coffee
+badd +1 accounts/providers.js
+badd +0 accounts/server/provider_secrets.js
 silent! argdel *
 edit grownbyus.html
 set splitbelow splitright
@@ -132,9 +127,9 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 90 + 125) / 250)
-exe 'vert 2resize ' . ((&columns * 69 + 125) / 250)
-exe 'vert 3resize ' . ((&columns * 89 + 125) / 250)
+exe 'vert 1resize ' . ((&columns * 87 + 132) / 264)
+exe 'vert 2resize ' . ((&columns * 66 + 132) / 264)
+exe 'vert 3resize ' . ((&columns * 109 + 132) / 264)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -377,7 +372,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 32 - ((0 * winheight(0) + 32) / 65)
+let s:l = 32 - ((31 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -492,44 +487,24 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 31 - ((0 * winheight(0) + 32) / 65)
+let s:l = 31 - ((30 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 31
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 90 + 125) / 250)
-exe 'vert 2resize ' . ((&columns * 69 + 125) / 250)
-exe 'vert 3resize ' . ((&columns * 89 + 125) / 250)
-tabedit server/server.coffee
+exe 'vert 1resize ' . ((&columns * 87 + 132) / 264)
+exe 'vert 2resize ' . ((&columns * 66 + 132) / 264)
+exe 'vert 3resize ' . ((&columns * 109 + 132) / 264)
+tabnew
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 36 + 34) / 68)
-exe 'vert 1resize ' . ((&columns * 120 + 125) / 250)
-exe '2resize ' . ((&lines * 28 + 34) / 68)
-exe 'vert 2resize ' . ((&columns * 120 + 125) / 250)
-exe '3resize ' . ((&lines * 51 + 34) / 68)
-exe 'vert 3resize ' . ((&columns * 129 + 125) / 250)
-exe '4resize ' . ((&lines * 13 + 34) / 68)
-exe 'vert 4resize ' . ((&columns * 129 + 125) / 250)
 argglobal
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
+enew
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -543,8 +518,8 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -559,240 +534,10 @@ setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
+setlocal errorformat=
 setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
-endif
-set foldcolumn=2
-setlocal foldcolumn=2
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=1
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-set foldnestmax=2
-setlocal foldnestmax=2
-setlocal foldtext=getline(v:foldstart)
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ server/server.coffee
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
-endif
-setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 25 - ((0 * winheight(0) + 18) / 36)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-25
-normal! 02l
-wincmd w
-argglobal
-edit server/helpers.coffee
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
-setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
-endif
-set foldcolumn=2
-setlocal foldcolumn=2
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=1
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-set foldnestmax=2
-setlocal foldnestmax=2
-setlocal foldtext=getline(v:foldstart)
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ server/helpers.coffee
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
-endif
-setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 13 - ((12 * winheight(0) + 14) / 28)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-13
-normal! 043l
-wincmd w
-argglobal
-edit client/client.coffee
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
-setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
+if &filetype != ''
+setlocal filetype=
 endif
 set foldcolumn=2
 setlocal foldcolumn=2
@@ -808,7 +553,7 @@ set foldnestmax=2
 setlocal foldnestmax=2
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=tcqr
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
@@ -823,7 +568,7 @@ setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ client/client.coffee
+setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
@@ -831,7 +576,7 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -853,11 +598,11 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
+if &syntax != ''
+setlocal syntax=
 endif
 setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
+setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
@@ -865,137 +610,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 54 - ((37 * winheight(0) + 25) / 51)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-54
-normal! 022l
-wincmd w
-argglobal
-edit grownbyus.coffee
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
-setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
-endif
-set foldcolumn=2
-setlocal foldcolumn=2
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=1
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-set foldnestmax=2
-setlocal foldnestmax=2
-setlocal foldtext=getline(v:foldstart)
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ grownbyus.coffee
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
-endif
-setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 3 - ((2 * winheight(0) + 6) / 13)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
-normal! 0
-wincmd w
-exe '1resize ' . ((&lines * 36 + 34) / 68)
-exe 'vert 1resize ' . ((&columns * 120 + 125) / 250)
-exe '2resize ' . ((&lines * 28 + 34) / 68)
-exe 'vert 2resize ' . ((&columns * 120 + 125) / 250)
-exe '3resize ' . ((&lines * 51 + 34) / 68)
-exe 'vert 3resize ' . ((&columns * 129 + 125) / 250)
-exe '4resize ' . ((&lines * 13 + 34) / 68)
-exe 'vert 4resize ' . ((&columns * 129 + 125) / 250)
-tabedit accounts/providers.coffee
+tabedit accounts/providers.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -1005,10 +620,9 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 137 + 125) / 250)
-exe 'vert 2resize ' . ((&columns * 112 + 125) / 250)
+exe 'vert 1resize ' . ((&columns * 132 + 132) / 264)
+exe 'vert 2resize ' . ((&columns * 131 + 132) / 264)
 argglobal
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -1022,8 +636,8 @@ setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -1038,125 +652,10 @@ setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
+setlocal errorformat=
 setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
-endif
-set foldcolumn=2
-setlocal foldcolumn=2
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=1
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-set foldnestmax=2
-setlocal foldnestmax=2
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ accounts/providers.coffee
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=javascriptcomplete#CompleteJS
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
-endif
-setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal noundofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 32) / 65)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-wincmd w
-argglobal
-edit accounts/server/provider_secrets.coffee
-cnoremap <buffer> <expr>  fugitive#buffer().rev()
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal balloonexpr=
-setlocal nobinary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=Error:\ In\ %f\\,\ %m\ on\ line\ %l,Error:\ In\ %f\\,\ Parse\ error\ on\ line\ %l:\ %m,SyntaxError:\ In\ %f\\,\ %m,%-G%.%#
-setlocal expandtab
-if &filetype != 'coffee'
-setlocal filetype=coffee
+if &filetype != 'javascript'
+setlocal filetype=javascript
 endif
 set foldcolumn=2
 setlocal foldcolumn=2
@@ -1187,7 +686,7 @@ setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 setlocal nolist
-setlocal makeprg=coffee\ -c\ \ $*\ accounts/server/provider_secrets.coffee
+setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
@@ -1217,11 +716,11 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'coffee'
-setlocal syntax=coffee
+if &syntax != 'javascript'
+setlocal syntax=javascript
 endif
 setlocal tabstop=2
-setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/coffee.tags,~/Projects/grownbyus-auth/.git/tags
+setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
@@ -1229,16 +728,130 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 32) / 65)
+let s:l = 2 - ((1 * winheight(0) + 32) / 64)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 01l
+2
+normal! 073l
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 137 + 125) / 250)
-exe 'vert 2resize ' . ((&columns * 112 + 125) / 250)
+argglobal
+edit accounts/server/provider_secrets.js
+cnoremap <buffer> <expr>  fugitive#buffer().rev()
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=//%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'javascript'
+setlocal filetype=javascript
+endif
+set foldcolumn=2
+setlocal foldcolumn=2
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=1
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+set foldnestmax=2
+setlocal foldnestmax=2
+setlocal foldtext=getline(v:foldstart)
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=javascriptcomplete#CompleteJS
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'javascript'
+setlocal syntax=javascript
+endif
+setlocal tabstop=2
+setlocal tags=./tags,./TAGS,tags,TAGS,~/Projects/grownbyus-auth/.git/javascript.tags,~/Projects/grownbyus-auth/.git/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 2 - ((1 * winheight(0) + 32) / 64)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 058l
+wincmd w
+exe 'vert 1resize ' . ((&columns * 132 + 132) / 264)
+exe 'vert 2resize ' . ((&columns * 131 + 132) / 264)
 tabnext 3
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

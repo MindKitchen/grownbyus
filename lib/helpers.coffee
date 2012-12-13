@@ -8,8 +8,9 @@ GBU.setLoc = (loc) ->
 
 GBU.resetBounds = ->
   bounds = @map.getBounds()
-  Session.set "cur_sw", [bounds.getSouthWest().lat(), bounds.getSouthWest().lng()]
-  Session.set "cur_ne", [bounds.getNorthEast().lat(), bounds.getNorthEast().lng()]
+  if bounds?
+    Session.set "cur_sw", [bounds.getSouthWest().lat(), bounds.getSouthWest().lng()]
+    Session.set "cur_ne", [bounds.getNorthEast().lat(), bounds.getNorthEast().lng()]
   return
 
 GBU.logLoc = ->
