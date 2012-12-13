@@ -1,17 +1,9 @@
 Meteor.startup ->
-  if Users.find().count() is 0
-    Users.insert
-      name:  "Jack the Grower"
-      emails: ["jackthegrower@grownby.us"]
-      services: {}
-    Users.insert
-      name: "Jill the Grower"
-      emails: ["jillthegrower@grownby.us"]
-      services: {}
   if Stalls.find().count() is 0
     Stalls.insert
-      owners: [Users.find({}).fetch()[0]._id
-               Users.find({}).fetch()[1]._id]
+      owners: []
+#      owners: [Users.find({}).fetch()[0]._id
+#               Users.find({}).fetch()[1]._id]
   if Items.find().count() is 0
 #    Items.insert({name: "", price: , description: "", quantity: , loc: [44.486693, -122.866751], stalls: [Stalls.findOne()._id]})  
     Items.insert

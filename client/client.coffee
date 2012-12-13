@@ -3,7 +3,6 @@ Session.set "cur_lon", 0
 Session.set "cur_sw", [0,0]
 Session.set "cur_ne", [1,1]
 
-Meteor.subscribe "users"
 Meteor.subscribe "stalls"
 Meteor.autosubscribe ->
   Meteor.subscribe "items", Session.get("cur_sw"), Session.get("cur_ne"), GBU.resetMap
