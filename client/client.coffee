@@ -36,10 +36,13 @@ $ ->
 # XXX Timeout WHAT?!? Need to trigger off template render, only a temp workaround
   setTimeout ( ->
     # Move CoffeeTable...should do this elsewhere, too
-    $("body").children().last().css("top","")
-    $("body").children().last().css("bottom","0px")
-    $("body").children().last().css("right","0px")
-    $("#items").height($(document).height()-170)
+    $("div[id^='CoffeeTable']").css("top","")
+    $("div[id^='CoffeeTable']").css("bottom","0px")
+    $("div[id^='CoffeeTable']").css("right","0px")
+
+    # Give some room below the items list
+    # ...also should be elsewhere...this whole function is crap! 
+    $("#items").height($(document).height()-110)
 
     mapOptions =
       center: new google.maps.LatLng Session.get("cur_lat"), Session.get("cur_lon")
