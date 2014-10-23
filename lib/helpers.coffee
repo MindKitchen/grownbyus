@@ -1,4 +1,5 @@
 GBU = {} if not GBU?
+window.GBU = GBU if window?
 
 GBU.setLoc = (loc) ->
   Session.set "cur_lat", loc[0]

@@ -11,10 +11,10 @@ Meteor.autosubscribe ->
 Handlebars.registerHelper 'fmtCurrency', (n) ->
   '$' + jQuery.formatNumber n.toString(), {format: "#,##0.00", locale: "us"}
 
-Template.menu.events =
-  'click button.additem': ->
-    $("#dialog-add-item").dialog "open"
-    return false
+#Template.menu.events =
+  #'click button.additem': ->
+    #$("#dialog-add-item").dialog "open"
+    #return false
 
 Template.items.items = ->
   items = Items.find({})
@@ -25,9 +25,9 @@ Template.sample_locations.events =
   'click button.moree': ->
     GBU.setLoc [-29.465835, 149.833889]
 
-$('#dialog-add-item').on 'hide', (x) ->
-  console.log x
-  return
+#$('#dialog-add-item').on 'hide', (x) ->
+  #console.log x
+  #return
 
 $(window).resize ->
   $("#items").height($(document).height()-170)
@@ -35,11 +35,6 @@ $(window).resize ->
 $ ->
 # XXX Timeout WHAT?!? Need to trigger off template render, only a temp workaround
   setTimeout ( ->
-    # Move CoffeeTable...should do this elsewhere, too
-    $("div[id^='CoffeeTable']").css("top","")
-    $("div[id^='CoffeeTable']").css("bottom","0px")
-    $("div[id^='CoffeeTable']").css("right","0px")
-
     # Give some room below the items list
     # ...also should be elsewhere...this whole function is crap! 
     $("#items").height($(document).height()-110)
