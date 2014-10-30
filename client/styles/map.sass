@@ -6,3 +6,32 @@
   @include span-columns(8)
   height: 100%
   height: 180px
+
+// Override leaflet-locatecontrol paths
+.leaflet-control-locate a
+  background-image: url(/packages/mrt_leaflet-locatecontrol/images/locate.png)
+  background-position: -2px -2px
+
+.leaflet-touch .leaflet-control-locate a
+  background-image: url(/packages/mrt_leaflet-locatecontrol/images/locate_touch.png)
+
+.leaflet-control-locate.requesting a
+  background-image: url(/packages/mrt_leaflet-locatecontrol/images/spinner.gif)
+  background-position: 50% 50%
+
+// Override leaflet-awesomemarker paths
+.awesome-marker
+  background-image: url(/packages/mrt_leaflet-awesome-markers/images/markers-soft.png)
+
+.awesome-marker-shadow
+  background-image: url(/packages/mrt_leaflet-awesome-markers/images/markers-shadow.png)
+
+@media (min--moz-device-pixel-ratio: 1.5),(-o-min-device-pixel-ratio: 3/2),
+(-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5),(min-resolution: 1.5dppx)
+  .awesome-marker
+    background-image: url(/packages/mrt_leaflet-awesome-markers/images/markers-soft@2x.png);
+    background-size: 360px 46px;
+
+  .awesome-marker-shadow
+    background-image: url(/packages/mrt_leaflet-awesome-markers/images/markers-shadow@2x.png);
+    background-size: 35px 16px;

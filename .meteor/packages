@@ -13,4 +13,8 @@ waitingkuo:normalize
 wolves:bitters
 mrt:numeral
 iron:router
+mrt:leaflet-locatecontrol
+mrt:leaflet-awesome-markers
+chrismbeckett:fontawesome4
+mrt:leaflet-markercluster
 
