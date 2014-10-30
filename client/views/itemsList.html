@@ -1,0 +1,17 @@
+<template name="itemsList">
+  <div class="gbu-items-list">
+    <ul>
+      {{#each items}}
+        {{> item}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="item">
+  <li>
+    <span class="name">{{name}}</span>
+    <span class="quantity_price"><span class="quantity">{{quantity}}</span> available @ <span class="price">{{fmtCurrency price}}</span></span>
+    <span class="description">{{description}}</span>
+  </li>
+</template>

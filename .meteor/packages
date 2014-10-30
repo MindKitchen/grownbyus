@@ -3,10 +3,14 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-coffeescript
-stylus
-bootstrap
-accounts-password
-accounts-ui
-accounts-facebook
-accounts-google
+meteor-platform
+insecure
+boustanihani:meteor-leaflet
+fourseven:scss
+wolves:bourbon
+wolves:neat
+waitingkuo:normalize
+wolves:bitters
+mrt:numeral
+iron:router
+
