@@ -45,8 +45,7 @@ Template.map.rendered = function () {
         markerColor: "darkgreen"
       });
 
-      debugger;
-      var marker = L.marker(item.loc, { icon: gbuMarker });
+      var marker = L.marker(item.location, { icon: gbuMarker });
       marker.bindPopup("<b>" + item.name + "</b> - " + item.quantity + " @ " + numeral(item.price).format("$0,0.00"));
       markerLayer.addLayer(marker);
       markers[id] = marker;

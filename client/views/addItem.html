@@ -1,0 +1,38 @@
+<template name="addItem">
+  <fieldset class="gbu-add-item">
+    <h1>Add an Item</h1>
+    <span class="fa-stack close">
+      <i class="fa fa-square fa-stack-2x"></i>
+      <i class="fa fa-stack-1x fa-inverse fa-times"></i>
+    </span>
+    <hr />
+    <form>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input name="name" id="name" type="text" required />
+      </div>
+      <div class="form-group price">
+        <label for="price">Price:</label>
+        <span><i class="fa fa-fw fa-dollar"></i><input name="price" id="price" type="number" value="0" step="0.01" min="0" required /></span>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input name="quantity" id="quantity" type="number" value="1" min="0" required />
+      </div>
+      <div class="form-group location">
+        <label for="location">Location:</label>
+        <span id="locate" class="fa-stack">
+          <i class="fa fa-square fa-stack-2x"></i>
+          <i class="fa fa-stack-1x fa-inverse fa-map-marker"></i>
+        </span>
+        <input name="latitude" id="latitude" type="number" step="any" required />
+        <input name="longitude" id="longitude" type="number" step="any" required />
+      </div>
+      <input type="submit" value="Add Item" />
+    </form>
+  </fieldset>
+</template>

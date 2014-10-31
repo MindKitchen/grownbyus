@@ -24,7 +24,7 @@
       "Mongo": false,
       "Template": false,
       "Session": false,
-
+      "Router": false,
       "Handlebars": false,
 
       "numeral": false,

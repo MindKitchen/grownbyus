@@ -19,14 +19,14 @@ Meteor.startup(function () {
     // Initial Heartbeets...
     for (var i = 0; i < 100; i++) {
       var location = getRandomLocation();
-      Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), loc: location });
+      Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), location: location });
     }
   }
 
   Meteor.setInterval(function () {
     var location = getRandomLocation();
     console.log("Heartbeet: add @ ", location);
-    Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), loc: location });
+    Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), location: location });
   }, 5000);
 
   Meteor.setTimeout(function () {
@@ -40,7 +40,7 @@ Meteor.startup(function () {
 
 Meteor.publish("itemsLocal", function (box) {
   if (box && box[0] !== null && box[1] !== null) {
-    return Items.find({ loc: { $within: { $box: box } } });
+    return Items.find({ location: { $within: { $box: box } } });
   } else {
     return [];
   }
