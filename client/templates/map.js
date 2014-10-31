@@ -1,7 +1,7 @@
-/* global map:true, markers:true */
+/* global map:true */
 map = null;
-markerLayer = null;
-markers = {};
+var markerLayer = null;
+var markers = {};
 
 Template.map.resize = function () {
   $("#map").height($(window).height());
