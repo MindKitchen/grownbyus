@@ -12,7 +12,7 @@ Template.itemsList.helpers({
 });
 
 Template.itemsList.resize = function () {
-  $(".gbu-items-list").height($(window).height() - $(".gbu-menu").height());
+  $(".gbu-items-list").height($(window).height() - $(".gbu-menu").height() - 1);
 };
 
 Template.itemsList.rendered = function () {

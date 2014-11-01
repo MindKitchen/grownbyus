@@ -22,14 +22,23 @@
     "globals": {
       "Meteor": false,
       "Mongo": false,
-      "Template": false,
       "Session": false,
+      "Accounts": false,
+      "Roles": false,
       "Router": false,
+      "Template": false,
       "Handlebars": false,
 
       "numeral": false,
       "L": false,
 
-      "Items": false
+      "Item": false,
+      "Items": false,
+
+      "jasmine": false,
+      "describe": false,
+      "it": false,
+      "expect": false,
+      "spyOn": false
     }
 }

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.10'
+before_install:
+  - curl https://install.meteor.com | /bin/sh
+script: VELOCITY_DEBUG=1 VELOCITY_DEBUG_MIRROR=1 meteor --test
+notifications:
+  slack:
+    secure: UpADQU6D1FEAGh43+KofV6EHaJvAscjcE5KywRhXKgIXtDhi7rLGz+t32iXf71CCX/T+aCmoS8W8ntxOAc/U6O82/6nrhULr7GjhMidnoefLJiOwFR3IpgfEpXU3sIidXonHG3s6349BpD/8leG4tNWLiFZhtpqpHThxMKOCsF8=

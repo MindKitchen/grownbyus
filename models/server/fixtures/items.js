@@ -1,7 +1,11 @@
-/* global itemsSeed:true */
+/* globals _ */
+"use strict";
+
+// Useful debugging one-liners:
 // Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), location: getRandomLocation(map) })
 // Items.find({ name: "Heartbeet" }).fetch().forEach(function(i) { Items.remove({ _id: i._id }); })
-itemsSeed = [
+
+var items = [
   { "name" : "Cucumbers", "price" : 1.29, "description" : "Fresh cucumbers, purchase by the pound!", "quantity" : 20, "location" : [ 44.65916, -123.14125 ] },
   { "name" : "Blackberries", "price" : 10, "description" : "Gallon of blackberries", "quantity" : 5, "location" : [ 44.65916, -123.14125 ] },
   { "name" : "Carrots", "price" : 0.1, "description" : "Delicious orange goodness! (Price per carrot)", "quantity" : 10, "location" : [ 44.486693, -122.866751 ] },
@@ -22,3 +26,39 @@ itemsSeed = [
   { "name" : "Radishes", "price" : 2, "description" : "Per bundle.", "quantity" : 27, "location" : [ 44.655768, -123.135648 ] },
   { "name" : "Eggplant", "price" : 2.49, "description" : "Purple goodness!", "quantity" : 20, "location" : [ 44.66001, -123.14552 ] }
 ];
+
+var getRandomLocationPDX = function () {
+  var southWest = { lat: 45.42688928030795, lng: -122.81787872314453 };
+  var northEast = { lat: 45.611635857525116, lng: -122.50888824462889};
+  var lngSpan = northEast.lng - southWest.lng;
+  var latSpan = northEast.lat - southWest.lat;
+
+  return [southWest.lat + latSpan * Math.random(), southWest.lng + lngSpan * Math.random()];
+};
+
+Meteor.startup(function() {
+  if (Items.find().count() === 0) {
+    items.forEach(function (i) {
+      Items.insert(i);
+    });
+
+    // Initial Heartbeets...
+    for (var i = 0; i < 100; i++) {
+      var location = getRandomLocationPDX();
+      Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), location: location });
+    }
+  }
+
+  // Rotate Heartbeets to simulate market actvity
+  Meteor.setInterval(function () {
+    var location = getRandomLocationPDX();
+    //console.log("Heartbeet: add @ ", location);
+    Items.insert({ name: "Heartbeet", price: 0.42, description: "Wonderful, awesome, delicious GBU heartbeets!", "quantity": _.random(1,100), location: location });
+  }, 5000);
+
+  Meteor.setTimeout(function () {
+  Meteor.setInterval(function () {
+    var old = Items.findOne({ name: "Heartbeet" }, { skip: _.random(0, Items.find({ name: "Heartbeet"}).count()) });
+    Items.remove(old);
+  }, 5000);}, 2500);
+});

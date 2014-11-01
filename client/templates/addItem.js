@@ -11,7 +11,7 @@ Template.addItem.rendered = function () {
 
 Template.addItem.events({
   "click #locate": setFormLocation,
-  "click .close": Router.go.bind(Router, "home"),
+  "click .close": function () { Router.go("home"); },
   "submit form": function (e) {
     e.preventDefault();
 

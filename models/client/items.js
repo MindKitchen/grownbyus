@@ -3,7 +3,7 @@ Meteor.autorun(function () {
 });
 
 // http://stackoverflow.com/questions/20751523/removing-leaflet-layers-and-l-marker-method
-window.getRandomLocation = function (map) {
+getRandomLocation = function (map) {
   var bounds = map.getBounds();
   var southWest = bounds.getSouthWest();
   var northEast = bounds.getNorthEast();

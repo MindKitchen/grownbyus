@@ -4,17 +4,19 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
+accounts-password
 boustanihani:meteor-leaflet
-fourseven:scss
-wolves:bourbon
-wolves:neat
-waitingkuo:normalize
-wolves:bitters
-mrt:numeral
-iron:router
 mrt:leaflet-locatecontrol
 mrt:leaflet-awesome-markers
-chrismbeckett:fontawesome4
 mrt:leaflet-markercluster
+waitingkuo:normalize
+fourseven:scss
+mrt:numeral
+iron:router
+chrismbeckett:fontawesome4
+alanning:roles
+velocity:core@1.0.0-rc.2
+velocity:html-reporter@0.3.0-rc.3
+sanjo:jasmine@0.5.0-rc.4
+mquandalle:bower
 

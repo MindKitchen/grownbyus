@@ -1,0 +1,8 @@
+{
+  "includePaths": [
+    ".meteor/local/bower",
+    ".meteor/local/bower/bourbon/dist",
+    ".meteor/local/bower/neat/app/assets/stylesheets",
+    ".meteor/local/bower/bitters/app/assets/stylesheets"
+  ]
+}
