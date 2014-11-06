@@ -15,8 +15,9 @@ mrt:numeral
 iron:router
 chrismbeckett:fontawesome4
 alanning:roles
-velocity:core@1.0.0-rc.2
+velocity:core@1.0.0-rc.1
 velocity:html-reporter@0.3.0-rc.3
-sanjo:jasmine@0.5.0-rc.4
-mquandalle:bower
+sanjo:jasmine@0.5.0
+bstocks:bourbon
+bstocks:neat
 
